@@ -5,6 +5,8 @@ Algoritmo calculadoraCostos
 	Definir tieneCupon como cadena
 	Definir destino como cadena
 	
+	
+	
 	Escribir "Ingrese el precio del producto"
 	leer precioProducto
 	
