@@ -48,20 +48,27 @@ Algoritmo calculadoraCostos
 		porcentajeDescuento[1] <- Desc_5
 		porcentajeDescuento[2] <- Desc_10
 		
+		Repetir
+		
 		Escribir "Ingrese el número del cupon de descuento: "
 		Escribir "1. 5%"
 		Escribir "2. 10%"
 		leer cupon
 		
+		Si cupon <> 1 o cupon <> 2 Entonces
+			Escribir "Ingrese un numero de cupon correcto:"
+		FinSi
+		Hasta que cupon = 1 o cupon =2
+		
 		Si cupon = 1 o cupon = 2 entonces
 			precioConDescuento <- precioProducto - (precioProducto * porcentajeDescuento[cupon])
 			
+						
 		FinSi
-		
-		Sino precioConDescuento <- precioProducto
-		
+				
 	FinSi
 	
+		
 	Escribir "Ingrese la cantidad de artículos que va a comprar:"
 	Leer cantidad
 	
@@ -87,7 +94,7 @@ Algoritmo calculadoraCostos
 	
 	//Total descuento
 	
-	totalDescuento <- (precioProducto * porcentajeDescuento[cupon]) + descuentoCantidad
+	totalDescuento <- (precioProducto - precioConDescuento) + descuentoCantidad
 	
 		//Calcular Costo de Envío
 	Si destino = "Regional" Entonces
@@ -114,9 +121,15 @@ Algoritmo calculadoraCostos
 	
 	// Detalle
 	Escribir"---------------------------------------"
+	Escribir "Producto: ", productos[Seleccion]
 	Escribir "Precio del producto: $", precioProducto
-	Escribir "Descuento por cupón aplicado: ", porcentajeDescuento[cupon], "%"
-	Escribir "Precio con descuento por unidad: $", precioConDescuento
+	Si tieneCupon = "Si" Entonces
+		Escribir "Descuento por cupón aplicado: ", porcentajeDescuento[cupon] *100, "%"
+	SiNo
+		Escribir "Descuento por cupón aplicado: 0%"
+		
+	FinSi
+		Escribir "Precio con descuento por unidad: $", precioConDescuento
 	Escribir "Cantidad de productos: " , cantidad
 	Escribir "Descuento por cantidad total: $", descuentoCantidad * cantidad
 	Escribir "Total descuentos aplicados: ", totalDescuento
