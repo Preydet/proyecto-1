@@ -9,7 +9,29 @@ Algoritmo calculadoraCostos
 	Desc_5 <- 0.05
 	Desc_10 <- 0.10
 	
+		//Productos Disponible
+	productos[1] <- "Zapatillas"
+	productos[2] <- "Polera"
+	productos[3] <- "Short"
+	productos[4] <- "Cacetines"
+	productos[5] <- "Poleron"
 	
+	//Mostrar Productos disponibles
+	escribir "Ingrese el numero del producto que desea"
+	para i <- 1 hasta 5
+		escribir i, ". ", productos[i]
+	FinPara
+	
+	//Seleccionar el productos
+	
+	Leer seleccion
+	
+	Si seleccion >= 1 y seleccion <= 5 Entonces
+		Escribir "producto seleccionado: ", productos[seleccion]
+	SiNo
+		Escribir "Producto no disponible"
+	FinSi
+		
 	Escribir "Ingrese el precio del producto"
 	leer precioProducto
 	
