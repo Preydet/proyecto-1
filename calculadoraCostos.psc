@@ -1,9 +1,10 @@
 Algoritmo calculadoraCostos
 	Definir precioProducto, precioConDescuento, impuesto, descuentoCantidad Como Real
 	Definir cantidad, peso, costoEnvio, total Como Real
+	Definir seleccion Como Entero
 	Definir porcentajeDescuento, subtotal, totalDescuento Como Real
-	Definir tieneCupon como cadena
-	Definir destino como cadena
+	Definir tieneCupon, destino, productos como cadena
+	dimension productos[5]
 	
 	Desc_5 <- 0.05
 	Desc_10 <- 0.10
