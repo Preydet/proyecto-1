@@ -6,7 +6,6 @@ Algoritmo calculadoraCostos
 	Definir destino como cadena
 	
 	
-	
 	Escribir "Ingrese el precio del producto"
 	leer precioProducto
 	
