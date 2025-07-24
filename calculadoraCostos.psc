@@ -9,6 +9,7 @@ Algoritmo calculadoraCostos
 	
 	Desc_5 <- 0.05
 	Desc_10 <- 0.10
+	IVA <- 0.19
 	
 		//Productos Disponible
 	productos[1] <- "Zapatillas"
@@ -23,15 +24,17 @@ Algoritmo calculadoraCostos
 		escribir i, ". ", productos[i]
 	FinPara
 	
-	//Seleccionar el productos
+	//Seleccionar el productos hasta que este disponible
 	
-	Leer seleccion
-	
-	Si seleccion >= 1 y seleccion <= 5 Entonces
-		Escribir "producto seleccionado: ", productos[seleccion]
-	SiNo
-		Escribir "Producto no disponible"
-	FinSi
+	Repetir
+		Escribir "Ingrese el número del producto que desea (1 a 5):"
+		Leer seleccion
+		
+		Si seleccion < 1 o seleccion > 5 Entonces
+			Escribir "producto no disponible, Intente nuevamente."
+		FinSi
+	Hasta Que seleccion >= 1 y seleccion <= 5
+	Escribir "Producto seleccionado: ", productos[Seleccion]
 		
 	Escribir "Ingrese el precio del producto"
 	leer precioProducto
@@ -55,6 +58,8 @@ Algoritmo calculadoraCostos
 			
 		FinSi
 		
+		Sino precioConDescuento <- precioProducto
+		
 	FinSi
 	
 	Escribir "Ingrese la cantidad de artículos que va a comprar:"
@@ -70,11 +75,11 @@ Algoritmo calculadoraCostos
 	
 	descuentoCantidad <- 0
 	
-	Si cantidad >= 5 Entonces
-		descuentoCantidad <- precioConDescuento * Desc_5
+	Si cantidad >= 20 Entonces
+		descuentoCantidad <- precioConDescuento * Desc_10
 	SiNo
-		Si cantidad >= 3 Entonces
-			descuentoCantidad <- precioConDescuento * Desc_10
+		Si cantidad >= 10 Entonces
+			descuentoCantidad <- precioConDescuento * Desc_5
 		SiNo
 			descuentoCantidad <- 0
 		FinSi
@@ -82,7 +87,7 @@ Algoritmo calculadoraCostos
 	
 	//Total descuento
 	
-	totalDescuento <- precioConDescuento - descuentoCantidad
+	totalDescuento <- (precioProducto * porcentajeDescuento[cupon]) + descuentoCantidad
 	
 		//Calcular Costo de Envío
 	Si destino = "Regional" Entonces
@@ -100,7 +105,7 @@ Algoritmo calculadoraCostos
 	subtotal <- ((totalDescuento) * cantidad) + costoEnvio
 	
 	//Calcular impuesto (IVA 19%)
-	impuesto <- subtotal * 0.19
+	impuesto <- subtotal * IVA
 	
 	total <- subtotal + impuesto
 	
