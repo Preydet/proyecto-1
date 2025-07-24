@@ -1,10 +1,11 @@
 Algoritmo calculadoraCostos
 	Definir precioProducto, precioConDescuento, impuesto, descuentoCantidad Como Real
 	Definir cantidad, peso, costoEnvio, total Como Real
-	Definir seleccion Como Entero
+	Definir seleccion, cupon Como Entero
 	Definir porcentajeDescuento, subtotal, totalDescuento Como Real
 	Definir tieneCupon, destino, productos como cadena
 	dimension productos[5]
+	dimension porcentajeDescuento[2]
 	
 	Desc_5 <- 0.05
 	Desc_10 <- 0.10
@@ -35,12 +36,25 @@ Algoritmo calculadoraCostos
 	Escribir "Ingrese el precio del producto"
 	leer precioProducto
 	
+	//Aplicar cupon de descuento
+	
 	Escribir "¿Tiene cupón de descuento? (si/no):"
 	leer tieneCupon
 	
 	Si tieneCupon = "si" Entonces
-		Escribir "Ingrese el porcentaje de descuento del cupón:"
-		Leer porcentajeDescuento
+		porcentajeDescuento[1] <- Desc_5
+		porcentajeDescuento[2] <- Desc_10
+		
+		Escribir "Ingrese el número del cupon de descuento: "
+		Escribir "1. 5%"
+		Escribir "2. 10%"
+		leer cupon
+		
+		Si cupon = 1 o cupon = 2 entonces
+			precioConDescuento <- precioProducto - (precioProducto * porcentajeDescuento[cupon])
+			
+		FinSi
+		
 	FinSi
 	
 	Escribir "Ingrese la cantidad de artículos que va a comprar:"
@@ -51,11 +65,7 @@ Algoritmo calculadoraCostos
 	
 	Escribir "Ingrese el destino (Regional o Nacional:)"
 	Leer destino
-	
-	//Aplicar descuento por cupón
-	
-	precioConDescuento <- precioProducto - (precioProducto * porcentajeDescuento / 100)
-		
+			
 	//Calcular descuento por cantidad
 	
 	descuentoCantidad <- 0
@@ -100,7 +110,7 @@ Algoritmo calculadoraCostos
 	// Detalle
 	Escribir"---------------------------------------"
 	Escribir "Precio del producto: $", precioProducto
-	Escribir "Descuento por cupón aplicado: ", porcentajeDescuento, "%"
+	Escribir "Descuento por cupón aplicado: ", porcentajeDescuento[cupon], "%"
 	Escribir "Precio con descuento por unidad: $", precioConDescuento
 	Escribir "Cantidad de productos: " , cantidad
 	Escribir "Descuento por cantidad total: $", descuentoCantidad * cantidad
