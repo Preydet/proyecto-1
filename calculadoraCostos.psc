@@ -5,6 +5,9 @@ Algoritmo calculadoraCostos
 	Definir tieneCupon como cadena
 	Definir destino como cadena
 	
+	Desc_5 <- 0.05
+	Desc_10 <- 0.10
+	
 	
 	Escribir "Ingrese el precio del producto"
 	leer precioProducto
@@ -27,15 +30,20 @@ Algoritmo calculadoraCostos
 	Leer destino
 	
 	//Aplicar descuento por cupón
+	
 	precioConDescuento <- precioProducto - (precioProducto * porcentajeDescuento / 100)
 		
 	//Calcular descuento por cantidad
+	
 	descuentoCantidad <- 0
-	Si cantidad >= 3 y cantidad < 5 Entonces
-		descuentoCantidad <- precioConDescuento * 0.05
+	
+	Si cantidad >= 5 Entonces
+		descuentoCantidad <- precioConDescuento * Desc_5
 	SiNo
-		Si cantidad >= 5 Entonces
-			descuentoCantidad <- precioConDescuento * 0.10
+		Si cantidad >= 3 Entonces
+			descuentoCantidad <- precioConDescuento * Desc_10
+		SiNo
+			descuentoCantidad <- 0
 		FinSi
 	FinSi
 	
